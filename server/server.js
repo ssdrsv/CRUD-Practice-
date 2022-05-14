@@ -11,13 +11,18 @@ const PORT = 3000;
 app.use(cors());
 app.get("/", db.getCharacter, (req, res) => {
   // console.log('passed db.getCharacter', res.locals.first);
-  return res.status(200).json(res.locals.first);
+  return res.status(200).json(res.locals.char);
 });
 
 app.delete("/delete", db.deleteCharacter, (req, res) => {
   // console.log("passed db.getCharacter", res.locals.deleted);
   return res.status(200).json(res.locals.deleted);
 });
+
+app.post("/post", db.addCharacter, (req,res) => {
+  return res.status(200).json(res.locals.added)
+}
+)
 
 // GLOBAL ERROR HANDLER
 app.use((err, req, res, next) => {
